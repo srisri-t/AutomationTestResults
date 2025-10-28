@@ -1483,17 +1483,53 @@ The GitHub workflow will automatically update your GitHub Pages site!
   gap: 4px;
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
+  .reports-collection-container {
+    padding: 8px;
+  }
+
+  .reports-collection-card {
+    border-radius: 12px;
+    margin: 0;
+  }
+
   .reports-collection-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .header-left {
+    width: 100%;
+  }
+
+  .header-text {
+    margin-left: 8px;
+  }
+
+  .collection-title {
+    font-size: 18px;
+  }
+
+  .collection-subtitle {
+    font-size: 13px;
   }
 
   .header-actions {
     width: 100%;
     justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .action-btn {
+    min-width: auto;
+    padding: 8px 12px;
+  }
+
+  .filters-section {
+    padding: 12px 16px;
   }
 
   .filters-grid {
@@ -1505,39 +1541,217 @@ The GitHub workflow will automatically update your GitHub Pages site!
     min-width: auto;
   }
 
-  .reports-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .reports-content {
+    padding: 12px 16px;
   }
 
-  .report-stats {
-    flex-direction: column;
+  .reports-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .report-card {
+    border-radius: 8px;
+  }
+
+  .report-content {
+    padding: 12px;
+  }
+
+  .report-header-top {
+    flex-wrap: wrap;
     gap: 8px;
   }
 
-  .stat-item {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+  .status-and-date {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .date-info {
+    font-size: 12px;
+  }
+
+  .report-actions {
+    gap: 6px;
+  }
+
+  .report-header-bottom {
+    margin-top: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .test-counts-info {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .test-count-item {
+    font-size: 12px;
+  }
+
+  .count-label {
+    font-size: 11px;
+  }
+
+  .sync-status-indicators {
+    align-self: flex-end;
+  }
+
+  .sync-status-chip {
+    font-size: 10px;
+  }
+
+  .progress-section {
+    margin-top: 10px;
+  }
+
+  .progress-stats {
+    font-size: 12px;
+  }
+
+  .pass-rate-text {
+    font-size: 11px;
+  }
+
+  .tags-section {
+    margin-top: 8px;
+  }
+
+  .tag-chip {
+    font-size: 10px;
+    height: 20px;
+  }
+
+  .more-tags {
+    font-size: 10px;
+  }
+
+  .report-identifier {
+    margin-top: 6px;
+  }
+
+  .json-filename {
+    font-size: 10px;
+  }
+
+  .empty-state {
+    padding: 24px 16px;
+    text-align: center;
+  }
+
+  .empty-state h4 {
+    font-size: 16px;
+  }
+
+  .empty-state p {
+    font-size: 13px;
   }
 }
 
 @media (max-width: 480px) {
-  .reports-content {
-    padding: 16px;
+  .reports-collection-container {
+    padding: 4px;
   }
 
   .reports-collection-header {
-    padding: 16px;
+    padding: 12px;
+  }
+
+  .collection-title {
+    font-size: 16px;
+  }
+
+  .collection-subtitle {
+    font-size: 12px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .action-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .filters-section {
+    padding: 8px 12px;
+  }
+
+  .reports-content {
+    padding: 8px 12px;
+  }
+
+  .reports-grid {
+    gap: 8px;
   }
 
   .report-content {
-    padding: 16px;
+    padding: 10px;
   }
 
-  .report-header {
-    flex-direction: column;
-    gap: 12px;
+  .report-header-top {
+    gap: 6px;
+  }
+
+  .status-and-date {
+    min-width: 100px;
+  }
+
+  .date-info {
+    font-size: 11px;
+  }
+
+  .report-header-bottom {
+    margin-top: 6px;
+    gap: 6px;
+  }
+
+  .test-counts-info {
+    min-width: 130px;
+  }
+
+  .test-count-item {
+    font-size: 11px;
+  }
+
+  .count-label {
+    font-size: 10px;
+  }
+
+  .progress-stats {
+    font-size: 11px;
+  }
+
+  .pass-rate-text {
+    font-size: 10px;
+  }
+
+  .tag-chip {
+    font-size: 9px;
+    height: 18px;
+  }
+
+  .more-tags {
+    font-size: 9px;
+  }
+
+  .json-filename {
+    font-size: 9px;
+  }
+
+  .empty-state {
+    padding: 20px 12px;
+  }
+
+  .empty-state h4 {
+    font-size: 14px;
+  }
+
+  .empty-state p {
+    font-size: 12px;
   }
 }
 
