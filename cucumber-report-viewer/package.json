@@ -6,6 +6,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:gh-pages": "vue-cli-service build --mode production",
+    "deploy": "npm run build:gh-pages",
     "build:analyze": "vue-cli-service build --report",
     "build:modern": "vue-cli-service build --modern",
     "lint": "vue-cli-service lint",

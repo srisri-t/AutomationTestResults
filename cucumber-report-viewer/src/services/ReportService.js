@@ -8,7 +8,8 @@ class ReportService {
     this.cache = new Map();
     this.cacheTimeout = 5 * 60 * 1000; // 5 minutes
     // Fix the base URL to match the actual path structure
-    this.baseUrl = process.env.VUE_APP_REPORTS_BASE_URL || '/TestResultsJsons/';
+    this.baseUrl = process.env.VUE_APP_REPORTS_BASE_URL || 
+      (process.env.NODE_ENV === 'production' ? '/AutomationTestResults/TestResultsJsons/' : '/TestResultsJsons/');
   }
 
   /**
@@ -48,9 +49,10 @@ class ReportService {
     }
 
     // Second, try to load server reports
+    const basePath = process.env.NODE_ENV === 'production' ? '/AutomationTestResults/' : '/';
     const possiblePaths = [
-      `${process.env.BASE_URL || '/'}TestResultsJsons/index.json`,
-      '/TestResultsJsons/index.json',
+      `${basePath}TestResultsJsons/index.json`,
+      `${process.env.BASE_URL || basePath}TestResultsJsons/index.json`,
       './TestResultsJsons/index.json',
       'TestResultsJsons/index.json'
     ];

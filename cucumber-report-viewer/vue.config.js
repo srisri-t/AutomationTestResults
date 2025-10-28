@@ -2,7 +2,9 @@
 const path = require("path");
 
 module.exports = {
-  publicPath: "/TestResults/",
+  publicPath: process.env.NODE_ENV === 'production' 
+    ? '/AutomationTestResults/' 
+    : '/',
   lintOnSave: false,
   devServer: {
     port: 8080,
