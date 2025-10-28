@@ -1482,13 +1482,20 @@ export default {
   border-radius: 8px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 60px;
 }
 
 .info-icon {
   background: rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  flex-shrink: 0;
 }
 
 .info-icon .v-icon {
@@ -1500,6 +1507,8 @@ export default {
 .info-content {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  flex: 1;
 }
 
 .info-label {
@@ -1621,14 +1630,21 @@ export default {
   border-radius: 8px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 60px;
 }
 
 .time-icon,
 .duration-icon {
   background: rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  flex-shrink: 0;
 }
 
 .time-icon .v-icon,
@@ -1642,6 +1658,8 @@ export default {
 .duration-content {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  flex: 1;
 }
 
 .time-label,
@@ -1713,14 +1731,24 @@ export default {
   .info-card,
   .time-card,
   .duration-card {
-    padding: 8px 12px;
+    padding: 10px 12px;
     min-width: auto;
+    min-height: 50px;
+    gap: 10px;
+  }
+
+  .info-icon,
+  .time-icon,
+  .duration-icon {
+    padding: 8px;
+    min-width: 36px;
+    min-height: 36px;
   }
 
   .info-content,
   .time-content,
   .duration-content {
-    gap: 4px;
+    gap: 2px;
   }
 
   .info-label,
@@ -1782,17 +1810,36 @@ export default {
   .left-actions,
   .right-actions {
     position: absolute;
-    top: 12px;
+    top: 16px;
+    z-index: 10;
   }
 
   .left-actions {
-    left: 12px;
+    left: 16px;
   }
 
   .right-actions {
-    right: 12px;
+    right: 16px;
     display: flex;
     gap: 8px;
+  }
+
+  .back-btn,
+  .refresh-btn,
+  .delete-btn {
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 12px;
+  }
+
+  .back-btn:hover,
+  .refresh-btn:hover,
+  .delete-btn:hover {
+    background: rgba(0, 0, 0, 0.3) !important;
+    transform: scale(1.05);
   }
 }
 
@@ -1807,6 +1854,34 @@ export default {
 
   .brand-subtitle {
     font-size: 11px !important;
+  }
+
+  .info-card,
+  .time-card,
+  .duration-card {
+    padding: 8px 10px;
+    min-height: 44px;
+    gap: 8px;
+  }
+
+  .info-icon,
+  .time-icon,
+  .duration-icon {
+    padding: 6px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .info-label,
+  .time-label,
+  .duration-label {
+    font-size: 11px;
+  }
+
+  .info-value,
+  .time-value,
+  .duration-value {
+    font-size: 12px;
   }
 
   .chart-container {
