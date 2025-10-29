@@ -7,11 +7,11 @@
         <div class="brand-section">
           <div class="brand-logo">
             <div class="logo-icon">
-              <v-icon size="32" :color="isDarkTheme ? '#34D399' : '#10B981'">mdi-leaf</v-icon>
+              <v-icon size="40" :color="isDarkTheme ? '#34D399' : '#10B981'">mdi-leaf</v-icon>
             </div>
             <div class="brand-text">
-              <h1 class="brand-title">Automation Test Results</h1>
-              <p class="brand-subtitle">Test Execution Dashboard</p>
+              <h1 class="brand-title">Test Execution</h1>
+              <p class="brand-subtitle">Dashboard</p>
             </div>
           </div>
         </div>
@@ -1351,6 +1351,7 @@ export default {
   align-items: center;
   max-width: 1800px;
   margin: 0 auto;
+  position: relative;
 }
 
 /* Left Actions */
@@ -1364,6 +1365,8 @@ export default {
   color: #6366F1 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .back-btn:hover {
@@ -1388,6 +1391,8 @@ export default {
   color: #10B981 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .refresh-btn:hover {
@@ -1404,6 +1409,8 @@ export default {
   color: #EF4444 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .delete-btn:hover {
@@ -1435,10 +1442,16 @@ export default {
 
 .logo-icon {
   background: rgba(255, 255, 255, 0.2);
-  padding: 12px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 16px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .logo-icon .v-icon {
@@ -1697,35 +1710,93 @@ export default {
   .modern-header {
     padding: 16px 12px;
     margin-bottom: 16px;
+    position: relative;
   }
 
   .header-container {
+    display: flex;
+    flex-direction: column;
     gap: 16px;
+    grid-template-columns: none;
+    align-items: center;
+    text-align: center;
+    padding-top: 70px;
+    /* Enough space to clear action buttons */
   }
 
   .brand-section {
-    margin-bottom: 12px;
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-icon {
+    display: none;
+    /* Hide the brand logo on mobile to avoid duplication */
   }
 
   .brand-logo {
     flex-direction: column;
     text-align: center;
     gap: 8px;
+    align-items: center;
+  }
+
+  .brand-text {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-title {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  .brand-subtitle {
+    text-align: center !important;
+    width: 100%;
   }
 
   .brand-title {
     font-size: 18px !important;
     line-height: 1.2;
+    margin: 0;
   }
 
   .brand-subtitle {
     font-size: 12px !important;
+    margin: 0;
   }
 
-  .execution-info,
-  .time-section {
+  .execution-info {
+    order: 2;
+    display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .time-section {
+    order: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .results-overview {
+    order: 3;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
   }
 
   .info-card,
@@ -1735,6 +1806,7 @@ export default {
     min-width: auto;
     min-height: 50px;
     gap: 10px;
+    width: 100%;
   }
 
   .info-icon,
@@ -1761,12 +1833,6 @@ export default {
   .time-value,
   .duration-value {
     font-size: 12px;
-  }
-
-  .results-overview {
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
   }
 
   .results-chart {
@@ -1807,39 +1873,53 @@ export default {
     font-size: 11px;
   }
 
-  .left-actions,
-  .right-actions {
+  .left-actions {
     position: absolute;
     top: 16px;
+    left: 16px;
     z-index: 10;
   }
 
-  .left-actions {
-    left: 16px;
-  }
-
   .right-actions {
+    position: absolute;
+    top: 16px;
     right: 16px;
+    z-index: 10;
     display: flex;
     gap: 8px;
+    align-items: center;
   }
 
   .back-btn,
   .refresh-btn,
   .delete-btn {
-    background: rgba(0, 0, 0, 0.2) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     min-width: 44px !important;
     min-height: 44px !important;
-    border-radius: 12px;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .back-btn .v-icon,
+  .refresh-btn .v-icon,
+  .delete-btn .v-icon {
+    color: white !important;
+    font-size: 20px !important;
   }
 
   .back-btn:hover,
   .refresh-btn:hover,
   .delete-btn:hover {
-    background: rgba(0, 0, 0, 0.3) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
     transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3) !important;
   }
 }
 
@@ -1848,12 +1928,35 @@ export default {
     padding: 12px 8px;
   }
 
+  .header-container {
+    padding-top: 60px;
+    /* Enough space to clear action buttons on small mobile */
+    gap: 12px;
+  }
+
+  .execution-info,
+  .time-section {
+    max-width: 280px;
+  }
+
+  .logo-icon {
+    display: none;
+    /* Keep logo hidden on small mobile too */
+  }
+
+  .brand-text {
+    text-align: center;
+    width: 100%;
+  }
+
   .brand-title {
     font-size: 16px !important;
+    text-align: center !important;
   }
 
   .brand-subtitle {
     font-size: 11px !important;
+    text-align: center !important;
   }
 
   .info-card,
@@ -1903,6 +2006,33 @@ export default {
 
   .summary-label {
     font-size: 10px;
+  }
+
+  .left-actions {
+    top: 12px;
+    left: 12px;
+  }
+
+  .right-actions {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+  }
+
+  .back-btn,
+  .refresh-btn,
+  .delete-btn {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+  }
+
+  .back-btn .v-icon,
+  .refresh-btn .v-icon,
+  .delete-btn .v-icon {
+    font-size: 18px !important;
   }
 }
 

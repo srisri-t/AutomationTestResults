@@ -1,0 +1,94 @@
+# Universal GitHub Push Script
+# Usage: Edit the commit message below and run the script
+
+Write-Host "=== GitHub Push Script ===" -ForegroundColor Green
+Write-Host ""
+
+# ============================================
+# EDIT COMMIT MESSAGE HERE
+# ============================================
+$commitMessage = @"
+Fix mobile layout issues - complete mobile responsiveness
+
+- Fixed action buttons alignment and positioning
+- Removed duplicate brand logo on mobile for cleaner layout  
+- Increased header padding to prevent title overlap with buttons
+- Added proper center alignment for brand title and subtitle
+- Improved mobile spacing and touch targets
+- Enhanced mobile user experience across all breakpoints
+- Optimized layout for 768px, 480px, and smaller screens
+"@
+
+# ============================================
+# SCRIPT EXECUTION (Don't modify below)
+# ============================================
+
+Write-Host "Commit Message:" -ForegroundColor Yellow
+Write-Host $commitMessage -ForegroundColor White
+Write-Host ""
+
+# Check git status
+Write-Host "Checking current changes..." -ForegroundColor Cyan
+git status
+
+Write-Host ""
+$continue = Read-Host "Continue with commit and push? (y/n)"
+
+if ($continue -ne 'y' -and $continue -ne 'Y') {
+    Write-Host "Operation cancelled." -ForegroundColor Yellow
+    exit
+}
+
+Write-Host ""
+Write-Host "Adding all changes..." -ForegroundColor Cyan
+git add .
+
+Write-Host ""
+Write-Host "Committing changes..." -ForegroundColor Cyan
+git commit -m $commitMessage
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ Commit failed. Please check the error above." -ForegroundColor Red
+    exit
+}
+
+Write-Host ""
+Write-Host "Please enter your GitHub Personal Access Token:" -ForegroundColor Yellow
+$token = Read-Host -AsSecureString
+$tokenPlain = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($token))
+
+Write-Host ""
+Write-Host "Pushing to GitHub..." -ForegroundColor Cyan
+
+try {
+    # Create the authenticated URL
+    $repoUrl = "https://${tokenPlain}@github.com/srisri-t/AutomationTestResults.git"
+    
+    # Push using the authenticated URL
+    git push $repoUrl main
+    
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host ""
+        Write-Host "✅ Successfully pushed to GitHub!" -ForegroundColor Green
+        Write-Host ""
+        Write-Host "Your changes are now live at:" -ForegroundColor Yellow
+        Write-Host "https://srisri-t.github.io/AutomationTestResults/" -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "GitHub Pages will update in 2-5 minutes." -ForegroundColor White
+    } else {
+        Write-Host ""
+        Write-Host "❌ Push failed. Please check the error message above." -ForegroundColor Red
+    }
+} catch {
+    Write-Host ""
+    Write-Host "❌ Error occurred during push: $($_.Exception.Message)" -ForegroundColor Red
+} finally {
+    # Clear the token from memory
+    $tokenPlain = $null
+    $token = $null
+    [System.GC]::Collect()
+}
+
+Write-Host ""
+Write-Host "Press any key to exit..."
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
