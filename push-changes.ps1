@@ -8,15 +8,16 @@ Write-Host ""
 # EDIT COMMIT MESSAGE HERE
 # ============================================
 $commitMessage = @"
-Optimize social media sharing with cleaner titles and preview cards
+Add professional team sharing functionality for test reports
 
-- Updated page title to cleaner 'Automation Test Results Viewer'
-- Switched to preview card without URL footer for professional appearance
-- Optimized Open Graph and Twitter meta tags for better sharing
-- Added optional simple.html for text-only sharing when needed
-- Maintained all existing functionality and visual design
-- Enhanced social media presence with cleaner, more professional titles
-- Improved link sharing experience across all platforms
+- Created CustomShareButton component with multiple sharing modes
+- Added team-friendly sharing format with clean titles and working URLs
+- Implemented 4 sharing modes: team, url, text, and markdown
+- Added preview functionality to see content before copying
+- Integrated sharing button into report pages for easy team communication
+- Professional formatted messages with emojis and hashtags for dev teams
+- Maintains working URLs while presenting clean, readable text
+- Perfect for Slack, Teams, email, and other team communication tools
 "@
 
 # ============================================

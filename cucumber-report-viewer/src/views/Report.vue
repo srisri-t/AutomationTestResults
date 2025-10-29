@@ -11,6 +11,12 @@
             </span>
           </div>
           <div class="header-actions">
+            <CustomShareButton 
+              v-if="reportId" 
+              :report-id="reportId"
+              :share-mode="'team'"
+              :report-title="getReportDisplayName(reportId)"
+            />
             <ThemeToggle />
           </div>
         </div>
@@ -39,6 +45,7 @@
 
 import ReportViewer from '@/components/ReportViewer.vue';
 import ThemeToggle from '@/components/ThemeToggle.vue';
+import CustomShareButton from '@/components/CustomShareButton.vue';
 import { useStore } from 'vuex';
 import { computed, ref, onMounted, reactive } from 'vue';
 import { useRoute } from 'vue-router';
@@ -47,6 +54,7 @@ export default {
   components: {
     ReportViewer,
     ThemeToggle,
+    CustomShareButton,
   },
   setup() {
     const store = useStore();
@@ -115,7 +123,27 @@ export default {
       return store.state.reportData && store.state.reportData._uploadedId === reportId;
     });
 
-    return { reportData, selectedFeatureIndex, onSelectFeature, expired, sessionOnly };
+    // Helper function to get display name for report
+    const getReportDisplayName = (id) => {
+      if (!id) return 'Test Report';
+      return id
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+        .replace(/test|scenarios?|page/gi, '')
+        .trim()
+        .replace(/\s+/g, ' ') || 'Test Report';
+    };
+
+    return { 
+      reportData, 
+      selectedFeatureIndex, 
+      onSelectFeature, 
+      expired, 
+      sessionOnly,
+      reportId,
+      getReportDisplayName
+    };
   },
 };
 </script>
