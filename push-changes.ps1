@@ -8,16 +8,15 @@ Write-Host ""
 # EDIT COMMIT MESSAGE HERE
 # ============================================
 $commitMessage = @"
-Create professional SVG preview card for social media sharing
+Improve URL display and add redirect functionality
 
-- Created beautiful SVG preview card with GeoCall branding
-- Updated meta tags to use SVG image for better compatibility
-- Added structured data (JSON-LD) for enhanced SEO
-- Professional gradient design with feature highlights
-- Optimized 1200x630 dimensions for social media platforms
-- Added HTML generator tool for creating PNG versions
-- Enhanced link previews across all social platforms
-- Improved brand visibility and professional appearance
+- Updated preview card to show cleaner branding instead of full URL
+- Created redirect page (go.html) for shorter URL sharing
+- Added configuration file for URL management and branding
+- Enhanced footer text with professional branding
+- Prepared infrastructure for custom domain integration
+- Improved user experience with cleaner URL presentation
+- Added URL helper functions for future enhancements
 "@
 
 # ============================================
