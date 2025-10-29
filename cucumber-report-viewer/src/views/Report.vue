@@ -42,7 +42,6 @@ import ThemeToggle from '@/components/ThemeToggle.vue';
 import { useStore } from 'vuex';
 import { computed, ref, onMounted, reactive } from 'vue';
 import { useRoute } from 'vue-router';
-import UrlService from '@/services/UrlService.js';
 
 export default {
   components: {
@@ -52,11 +51,9 @@ export default {
   setup() {
     const store = useStore();
     const route = useRoute();
-    const shortReportId = route && route.params && route.params.id ? route.params.id : null;
-    const state = reactive({ staticReport: null, resolvedReportId: null });
+    const reportId = route && route.params && route.params.id ? route.params.id : null;
+    const state = reactive({ staticReport: null });
     const reportData = computed(() => {
-      const reportId = state.resolvedReportId;
-      
       // Try to load from localStorage if route param id matches a static report
       if (reportId && localStorage.getItem('uploaded-report-' + reportId)) {
         try {
@@ -83,33 +80,21 @@ export default {
       selectedFeatureIndex.value = idx;
     };
 
-    // Resolve report ID and fetch static report JSON if needed
-    onMounted(async () => {
-      if (!shortReportId) return;
-      
-      // Resolve the short ID to the actual report ID
-      try {
-        const resolvedId = await UrlService.resolveReportId(shortReportId);
-        state.resolvedReportId = resolvedId;
-        
-        // Check if we already have this report
-        if (store.state.reportData && store.state.reportData._uploadedId === resolvedId) return;
-        if (localStorage.getItem('uploaded-report-' + resolvedId)) return;
-        
-        // Try to fetch from public/TestResultsJsons/<id>.json
-        fetch(process.env.BASE_URL + 'TestResultsJsons/' + resolvedId + '.json', { cache: 'reload' })
-          .then(r => r.ok ? r.json() : null)
-          .then(json => {
-            // Always normalize to {features: array}
-            if (Array.isArray(json)) state.staticReport = { features: json };
-            else if (json && Array.isArray(json.features)) state.staticReport = json;
-            else state.staticReport = null;
-          })
-          .catch(() => { state.staticReport = null; });
-      } catch (e) {
-        console.error('Error resolving report ID:', e);
-        state.resolvedReportId = shortReportId;
-      }
+    // Fetch static report JSON if needed
+    onMounted(() => {
+      if (!reportId) return;
+      if (store.state.reportData && store.state.reportData._uploadedId === reportId) return;
+      if (localStorage.getItem('uploaded-report-' + reportId)) return;
+      // Try to fetch from public/TestResultsJsons/<id>.json
+      fetch(process.env.BASE_URL + 'TestResultsJsons/' + reportId + '.json', { cache: 'reload' })
+        .then(r => r.ok ? r.json() : null)
+        .then(json => {
+          // Always normalize to {features: array}
+          if (Array.isArray(json)) state.staticReport = { features: json };
+          else if (json && Array.isArray(json.features)) state.staticReport = json;
+          else state.staticReport = null;
+        })
+        .catch(() => { state.staticReport = null; });
     });
 
     // Soft expiry logic: check for t= timestamp in URL hash
@@ -127,7 +112,7 @@ export default {
 
     // Show a warning if the report is only available for this session
     const sessionOnly = computed(() => {
-      return store.state.reportData && store.state.reportData._uploadedId === state.resolvedReportId;
+      return store.state.reportData && store.state.reportData._uploadedId === reportId;
     });
 
     return { reportData, selectedFeatureIndex, onSelectFeature, expired, sessionOnly };
