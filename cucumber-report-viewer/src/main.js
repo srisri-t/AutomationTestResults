@@ -73,4 +73,43 @@ store.watch(
   { immediate: true }
 );
 
+// Mount the app
 app.mount('#app');
+
+// Dynamic Meta Tags for Link Previews
+window.updateMetaTags = function(reportData) {
+  if (!reportData) return;
+  
+  const title = `GeoCall Test Report - ${reportData.name || 'Automation Results'}`;
+  const description = `Test Results: ${reportData.passed || 0} passed, ${reportData.failed || 0} failed, ${reportData.skipped || 0} skipped. Duration: ${reportData.duration || 'N/A'}`;
+  
+  // Update document title
+  document.title = title;
+  
+  // Update meta tags
+  updateMetaTag('og:title', title);
+  updateMetaTag('twitter:title', title);
+  updateMetaTag('og:description', description);
+  updateMetaTag('twitter:description', description);
+  
+  // Update with specific report stats
+  const statsDescription = `📊 ${reportData.passed || 0} Passed • ❌ ${reportData.failed || 0} Failed • ⏭️ ${reportData.skipped || 0} Skipped • ⏱️ ${reportData.duration || 'N/A'}`;
+  updateMetaTag('description', statsDescription);
+};
+
+function updateMetaTag(property, content) {
+  let meta = document.querySelector(`meta[property="${property}"]`) || 
+             document.querySelector(`meta[name="${property}"]`);
+  
+  if (!meta) {
+    meta = document.createElement('meta');
+    if (property.startsWith('og:') || property.startsWith('twitter:')) {
+      meta.setAttribute('property', property);
+    } else {
+      meta.setAttribute('name', property);
+    }
+    document.head.appendChild(meta);
+  }
+  
+  meta.setAttribute('content', content);
+}

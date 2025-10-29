@@ -8,15 +8,16 @@ Write-Host ""
 # EDIT COMMIT MESSAGE HERE
 # ============================================
 $commitMessage = @"
-Fix mobile layout issues - complete mobile responsiveness
+Create professional SVG preview card for social media sharing
 
-- Fixed action buttons alignment and positioning
-- Removed duplicate brand logo on mobile for cleaner layout  
-- Increased header padding to prevent title overlap with buttons
-- Added proper center alignment for brand title and subtitle
-- Improved mobile spacing and touch targets
-- Enhanced mobile user experience across all breakpoints
-- Optimized layout for 768px, 480px, and smaller screens
+- Created beautiful SVG preview card with GeoCall branding
+- Updated meta tags to use SVG image for better compatibility
+- Added structured data (JSON-LD) for enhanced SEO
+- Professional gradient design with feature highlights
+- Optimized 1200x630 dimensions for social media platforms
+- Added HTML generator tool for creating PNG versions
+- Enhanced link previews across all social platforms
+- Improved brand visibility and professional appearance
 "@
 
 # ============================================
