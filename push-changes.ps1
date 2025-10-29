@@ -8,15 +8,15 @@ Write-Host ""
 # EDIT COMMIT MESSAGE HERE
 # ============================================
 $commitMessage = @"
-Improve URL display and add redirect functionality
+Optimize social media sharing with cleaner titles and preview cards
 
-- Updated preview card to show cleaner branding instead of full URL
-- Created redirect page (go.html) for shorter URL sharing
-- Added configuration file for URL management and branding
-- Enhanced footer text with professional branding
-- Prepared infrastructure for custom domain integration
-- Improved user experience with cleaner URL presentation
-- Added URL helper functions for future enhancements
+- Updated page title to cleaner 'Automation Test Results Viewer'
+- Switched to preview card without URL footer for professional appearance
+- Optimized Open Graph and Twitter meta tags for better sharing
+- Added optional simple.html for text-only sharing when needed
+- Maintained all existing functionality and visual design
+- Enhanced social media presence with cleaner, more professional titles
+- Improved link sharing experience across all platforms
 "@
 
 # ============================================
