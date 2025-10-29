@@ -8,16 +8,15 @@ Write-Host ""
 # EDIT COMMIT MESSAGE HERE
 # ============================================
 $commitMessage = @"
-Implement clean URL system with short IDs and sharing
+Improve URL display and add redirect functionality
 
-- Changed routes from /report/long-id to /r/short-id for cleaner URLs
-- Created UrlService for generating readable short IDs from long report names
-- Added ShareUrl component for easy URL copying and sharing
-- Updated navigation to use short IDs automatically
-- Implemented URL mapping system for better user experience
-- Added professional URL sharing functionality
-- Created clean, shareable URLs perfect for team collaboration
-- Enhanced preview card without URL references for cleaner social sharing
+- Updated preview card to show cleaner branding instead of full URL
+- Created redirect page (go.html) for shorter URL sharing
+- Added configuration file for URL management and branding
+- Enhanced footer text with professional branding
+- Prepared infrastructure for custom domain integration
+- Improved user experience with cleaner URL presentation
+- Added URL helper functions for future enhancements
 "@
 
 # ============================================
