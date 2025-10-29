@@ -19,10 +19,7 @@ const routes = [
   },
   {
     path: '/report/:id',
-    redirect: to => {
-      const shortId = UrlService.generateShortId(to.params.id);
-      return `/r/${shortId}`;
-    }
+    redirect: to => `/r/${to.params.id}`
   },
   {
     path: '/report',
@@ -33,22 +30,6 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes
-});
-
-// Route guard to automatically convert long IDs to short IDs
-router.beforeEach((to, from, next) => {
-  if (to.name === 'Report' && to.params.id) {
-    const currentId = to.params.id;
-    
-    // If the ID is very long (more than 10 characters), convert it to short ID
-    if (currentId.length > 10) {
-      const shortId = UrlService.generateShortId(currentId);
-      // Redirect to the short URL
-      next({ name: 'Report', params: { id: shortId }, replace: true });
-      return;
-    }
-  }
-  next();
 });
 
 export default router;
